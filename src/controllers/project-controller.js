@@ -7,8 +7,6 @@ import uuid4 from "uuid4"
 
 const execPromisified = util.promisify(child_process.exec)
 
-
-
 export const createProjectController = async (req, res) => {
   // create a unique id and then inside the projects folder create a new folder with that id
   const projectId = uuid4()
@@ -17,9 +15,9 @@ export const createProjectController = async (req, res) => {
 
   // after this call the npm create vite command in the newly created project folder
   const response = await execPromisified('npm create vite@latest sandbox -- --template react', {
-    cwd:`./projects/${projectId}`
+    cwd: `./projects/${projectId}`
   })
-   return res.status(StatusCodes.OK).json({
+  return res.status(StatusCodes.OK).json({
     success: true,
     message: "Project created successfully",
     error: {},
